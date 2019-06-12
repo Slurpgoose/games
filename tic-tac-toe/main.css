@@ -15,7 +15,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     color: white;
-    width: 45.3vw;
+    width: 39.2vw;
     margin: auto;
     background: rgba(0,0,0,1);
     -webkit-box-shadow: 1px 25px 30px 15px rgba(0,0,0,0.48);
@@ -26,10 +26,10 @@ border-radius: 20px;
   
   .box {
     background: rgba(255, 255, 255, 1);
-    width: 15vw;
+    width: 13vw;
     border: 2px solid black;
     border-radius: 20px;
-    height: 15vw;
+    height: 13vw;
     display: flex;
     flex-direction: row;
     justify-content: center;

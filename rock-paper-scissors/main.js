@@ -4,30 +4,38 @@ var rockPaperScissors = "Replace this with your own abstraction of Rock Paper Sc
 
 content.innerHTML = renderGame(rockPaperScissors);
 
-let games = 0;
-let user_wins = 0;
-let cpu_wins = 0;
-let win_percentage = 0;
+let games = 0;  //total games played
+let user_wins = 0; //user wins
+let cpu_wins = 0; //computer wins
+let win_percentage = 0; //win percentage
+
+
 buttons = document.getElementsByTagName("button");
+
 for(i = 0; i < buttons.length; i++){
     buttons[i].addEventListener("click", function(){
         games += 1;
         var move = this.innerHTML;
         var decision = computerDecision();
         var result = findWinner(move, decision);
-        win_percentage = ((user_wins / games) * 100).toFixed(2)
-        document.getElementById('total-game').innerHTML = `<b>${games}</b>`;
-        document.getElementById('cpu').innerHTML = `<b>${cpu_wins}</b>`;
-        document.getElementById('user').innerHTML = `${user_wins}</b>`;
-        document.getElementById('percentage').innerHTML = `${win_percentage}%</b>`;
-        document.getElementById('your-move').innerHTML = `You played: <b>${move}</b>`;
-        document.getElementById('your-move').innerHTML = `You played: <b>${move}</b>`;
-        document.getElementById('computer-move').innerHTML = `The computer played: <b>${decision}</b>`;
-        document.getElementById('result').innerHTML = result;
-        //console.log(decision);
+        win_percentage = calculateWinRatio(user_wins, games)
+        displayResult(decision, move, result)
 })
 }
 
+function displayResult(decision, move, result){
+    document.getElementById('total-game').innerHTML = `<b>${games}</b>`;
+    document.getElementById('cpu').innerHTML = `<b>${cpu_wins}</b>`;
+    document.getElementById('user').innerHTML = `${user_wins}</b>`;
+    document.getElementById('percentage').innerHTML = `${win_percentage}%</b>`;
+    document.getElementById('your-move').innerHTML = `You played: <b>${move}</b>`;
+    document.getElementById('computer-move').innerHTML = `The computer played: <b>${decision}</b>`;
+    document.getElementById('result').innerHTML = result;
+}
+
+function calculateWinRatio(user_wins, games) {
+    return ((user_wins / games) * 100).toFixed(2)
+}
 
 function findWinner(move, decision) {
     if (move == 'Rock' & decision == 'Paper') {
@@ -55,7 +63,6 @@ function findWinner(move, decision) {
 function computerDecision(){
     var options = ['Rock', 'Paper', 'Scissors']
     var decision = Math.floor(Math.random() * 3);
-    console.log(decision);
     return options[decision]
 }
 
